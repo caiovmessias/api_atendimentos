@@ -1,13 +1,21 @@
 version: "3.8"
 
+
+networks:
+  shared-services:
+    external: true
+
+
 services:
   node_api_1:
     build:
       context: .
       target: dev
     restart: always
-    user: "1000:1000"
     ports:
       - "8000:3000"
     volumes:
       - ".:/application"
+    networks:
+      - shared-services
+
